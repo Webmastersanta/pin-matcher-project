@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input class="form-control" id ="randomdisplay" type="text">
+                    <button class="generate-btn" id="generatebutton"  >Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control" id="calculatordisplay" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                                
+                              <div class="button" id="number" onclick="caldisplay('7')">7</div>
+                              <div class="button" id="number"  onclick="caldisplay('8')">8</div>
+                              <div class="button" id="number"  onclick="caldisplay('9')">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" id="number"  onclick="caldisplay('4')">4</div>
+                              <div class="button" id="number" onclick="caldisplay('5')">5</div>
+                              <div class="button" id="number" onclick="caldisplay('6')">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" id="number" onclick="caldisplay('1')">1</div>
+                              <div class="button" id="number" onclick="caldisplay('2')">2</div>
+                              <div class="button"  id="number" onclick="caldisplay('3')">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button">l</div>
+                                <div class="button" onclick="caldisplay('3')">0</div>
+                                <div class="button" onclick="caldisplay('0')">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn" id="submitbutton"  >Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section" id="matching" >
+            <p class="notify" id="notmatched" style="display: none;">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="matched" style="display: none;">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("calculatordisplay").value = null;
+        document.getElementById("randomdisplay").value= null;
+        
+      
+       
+        const generateButton = document.getElementById("generatebutton");
+        generateButton.addEventListener("click", function(){
+            var fourdigitsrandom = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById("randomdisplay").value = fourdigitsrandom;
+            const fourdigitsrandomnum=parseFloat(fourdigitsrandom);
+            console.log(fourdigitsrandomnum);
+            var gmatching=getElementById("matching");
+            gmatching.style.display = "none";
+           
+            })
+            
+         
+            
+           
+          function caldisplay(val) 
+         { 
+             document.getElementById("calculatordisplay").value+=val ;
+             const caldisplayvalue= document.getElementById("calculatordisplay").value;
+             //console.log(caldisplayvalue);
+             const caldisplayvaluenum=parseFloat(caldisplayvalue);
+             return caldisplayvaluenum;
+            
+             
+         } 
+         
+         
+         
+       
+         const submitbtn = document.getElementById("submitbutton");
+            submitbtn.addEventListener("click", function(){
+            var randvalue= document.getElementById("randomdisplay").value
+            var calvalue= caldisplay();
+
+           console.log(randvalue);
+           console.log(calvalue);
+           
+        if (randvalue==calvalue)
+        {
+           
+            var msg=document.getElementById("matched");
+            msg.style.display = "block";
+            
+  }
+  
+ 
+        
+        else {
+            
+            var msg1=document.getElementById("notmatched");
+            msg1.style.display = "block";
+            document.getElementById("notmatched").value=" ";
+        }
+        document.getElementById("calculatordisplay").value = "";
+        document.getElementById("matching").value = "";
+        
+        })
+
+
+        
+
+        /*function comparenumber(){
+           var randvalue = randomnumber();
+           var calvalue= caldisplay();
+
+           console.log(randvalue);
+           console.log(calvalue);
+        if (randvalue==calvalue)
+        {
+            
+            console.log("congratulations!!");
+        }
+        else {
+            console.log("sorry!!");
+        }
+        }*/
+
+        /*function randomnumber(){
+           // var fourdigitsrandom = Math.floor(1000 + Math.random() * 9000);
+           document.getElementById("randomdisplay").value = Math.floor(1000 + Math.random() * 9000);
+           const fourdigitsrandom=document.getElementById("randomdisplay").value
+            const fourdigitsrandomnum=parseFloat(fourdigitsrandom);
+            return fourdigitsrandomnum;   
+        }
+       var randvalue= randomnumber();
+       console.log(randvalue);*/
+
+
+        
+        
+</script>
+
+         
+
+
+
+        </script>
+</body>
+</html>
